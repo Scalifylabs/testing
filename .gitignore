@@ -1,38 +1,34 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# --- ARCHIVOS DE AGENTES (Solicitado) ---
+AGENTS.MD
+CLAUDE.MD
+
+# --- DEPENDENCIAS ---
+# Ignoramos los node_modules de la RAÍZ (desarrollo)
+# Pero OJO: el standalone tiene sus propios node_modules internos que SÍ se subirán
 /node_modules
 /.pnp
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-# testing
-/coverage
+# --- PRODUCCIÓN ---
+# En un proyecto normal ignoramos .next, pero para esta PoC 
+# NECESITAMOS subir la carpeta standalone.
+# Bloqueamos todo .next EXCEPTO la carpeta standalone y static
+.next/*
+!.next/standalone/
+!.next/static/
 
+# --- ARCHIVOS DE ENTORNO ---
+.env*
 
-# production
-/build
-
-# misc
+# --- MISC / DEBUG ---
 .DS_Store
 *.pem
-
-# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
 .vercel
-
-# typescript
 *.tsbuildinfo
 next-env.d.ts
